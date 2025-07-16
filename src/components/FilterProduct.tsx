@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import { cn } from "@/lib/utils"; // hàm tiện để gộp class (nếu có)
 import type { ProductType } from "@/types";
+import { useState } from "react";
 
 interface FilterProductProps {
   initProducts: ProductType[];
