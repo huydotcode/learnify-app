@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
+import AISuggestionSection from "@/features/courses/components/AISuggestionSection";
+import FeaturedCoursesSection from "@/features/courses/components/FeaturedCoursesSection";
 
 const HomePage = () => {
   return (
     <div>
       {/* Banner Section */}
-      <div className="h-[500px]">
+      <section className="container mx-auto h-[500px] max-lg:h-auto">
         <div className="flex max-lg:flex-col h-full">
           <div className="flex flex-col justify-center items-start p-8">
             <h1 className="text-5xl font-bold mb-4 text-primary">
@@ -27,7 +29,10 @@ const HomePage = () => {
             />
           </div>
         </div>
-      </div>
+      </section>
+
+      <AISuggestionSection />
+      <FeaturedCoursesSection />
     </div>
   );
 };
