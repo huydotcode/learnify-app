@@ -27,16 +27,6 @@ body {
   font-family: "Be Vietnam Pro", sans-serif;
 }
 
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-}
-
-a:hover {
-  color: var(--color-primary-hover);
-  text-decoration: underline;
-}
-
 button {
   cursor: pointer;
 }

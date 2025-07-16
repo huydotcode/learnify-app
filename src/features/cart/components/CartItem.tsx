@@ -1,12 +1,13 @@
+import Icons from "@/components/shared/Icons";
 import { Button } from "@/components/ui/button";
 import type { CartItemType } from "@/types";
+import { formatMoney } from "@/utils/formatMoney";
 import { useDispatch } from "react-redux";
 import {
   decreaseQuantity,
   increaseQuantity,
   removeFromCart,
 } from "../store/cartSlice";
-import Icons from "@/components/shared/Icons";
 
 interface CartItemProps {
   data: CartItemType;
@@ -14,6 +15,7 @@ interface CartItemProps {
 
 const CartItem = ({ data }: CartItemProps) => {
   const dispatch = useDispatch();
+  const totalPrice = data.price * data.quantity;
 
   const handleRemoveFromCart = () => {
     dispatch(removeFromCart(data.productId));
@@ -44,7 +46,7 @@ const CartItem = ({ data }: CartItemProps) => {
           <h3 className="text-sm font-semibold">{data.name}</h3>
           <p className="text-xs text-gray-500">{data.description}</p>
 
-          <p className="text-sm font-bold mt-1">{data.price}</p>
+          <p className="text-sm font-bold mt-1">{formatMoney(totalPrice)}</p>
         </div>
       </div>
 

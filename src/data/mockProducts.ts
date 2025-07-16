@@ -84,4 +84,38 @@ export const mockProducts: ProductType[] = [
     createdAt: Date.now().toString(),
     updatedAt: Date.now().toString(),
   },
+  {
+    productId: "6",
+    title: "Khóa học React Native",
+    price: 249000,
+    description:
+      "Khóa học React Native giúp bạn phát triển ứng dụng di động đa nền tảng.",
+    imageUrl:
+      "https://letdiv.com/wp-content/uploads/2024/04/khoa-hoc-react-native.jpg",
+    categorySlug: "mobile-development",
+    keywords: ["React Native", "Mobile", "JavaScript"],
+    rating: 4.7,
+    reviews: 90,
+    discount: 15,
+    stock: 50,
+    createdAt: Date.now().toString(),
+    updatedAt: Date.now().toString(),
+  },
+  // Python nang cao
+  {
+    productId: "7",
+    title: "Khóa học Python nâng cao",
+    price: 299000,
+    description:
+      "Khóa học Python nâng cao giúp bạn nắm vững các kỹ thuật lập trình phức tạp.",
+    imageUrl: "https://i.ytimg.com/vi/O1gZc-erLjg/maxresdefault.jpg",
+    categorySlug: "programming",
+    keywords: ["Python", "Advanced", "Programming"],
+    rating: 4.8,
+    reviews: 150,
+    discount: 10,
+    stock: 80,
+    createdAt: Date.now().toString(),
+    updatedAt: Date.now().toString(),
+  },
 ];

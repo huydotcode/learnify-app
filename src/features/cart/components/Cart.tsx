@@ -4,7 +4,7 @@ import Dropdown from "@/components/ui/Dropdown";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import type { RootState } from "../store";
+import type { RootState } from "../../../store";
 import CartItem from "./CartItem";
 
 const Cart = () => {
@@ -24,6 +24,12 @@ const Cart = () => {
         onClick={() => setOpenDropdownCart((prev) => !prev)}
       >
         <Icons.Cart className="h-6 w-6" />
+
+        {items.length > 0 && (
+          <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+            {items.length}
+          </span>
+        )}
       </Button>
 
       {openDropdownCart && (
@@ -31,13 +37,22 @@ const Cart = () => {
           isOpen={openDropdownCart}
           className="absolute right-0 mt-2 min-w-[500px] bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-md:min-w-0 max-md:w-[80vw]"
         >
-          <ul className="py-2">
-            {items.length > 0 ? (
-              items.map((item) => <CartItem key={item.productId} data={item} />)
-            ) : (
-              <li className="px-4 py-2 text-gray-500">Giỏ hàng trống</li>
+          <>
+            {items.length > 0 &&
+              items.map((item) => (
+                <CartItem key={item.productId} data={item} />
+              ))}
+
+            {items.length === 0 && (
+              <div className="p-4 text-center text-gray-500">
+                Giỏ hàng của bạn trống.
+                <span className="text-primary font-semibold">
+                  {" "}
+                  Thêm sản phẩm ngay!
+                </span>
+              </div>
             )}
-          </ul>
+          </>
         </Dropdown>
       )}
     </div>

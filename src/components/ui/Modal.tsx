@@ -1,10 +1,12 @@
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "motion/react";
 import React, { useRef } from "react";
 import Icons from "../shared/Icons";
 import { Button } from "./button";
-import { useClickOutside } from "@/hooks/useClickOutside";
-import { AnimatePresence, motion } from "motion/react";
 
 interface ModalProps {
+  className?: string;
   isOpen: boolean;
   onClose: () => void;
   title: string;
@@ -22,7 +24,13 @@ const modalVariants = {
   exit: { opacity: 0, scale: 0.9 },
 };
 
-const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
+const Modal = ({
+  className = "",
+  isOpen,
+  onClose,
+  title,
+  children,
+}: ModalProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   useClickOutside({
     handler: onClose,
@@ -40,7 +48,10 @@ const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
           exit="hidden"
         >
           <motion.div
-            className="bg-white rounded-lg shadow-lg px-10 py-6 max-w-md w-full min-h-[500px] max-h-screen overflow-y-auto"
+            className={cn(
+              "bg-white rounded-lg shadow-lg px-10 py-6 w-full max-w-md min-h-[500px] max-h-screen overflow-y-auto",
+              className
+            )}
             ref={containerRef}
             variants={modalVariants}
             initial="hidden"

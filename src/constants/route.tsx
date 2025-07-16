@@ -1,3 +1,4 @@
+import FavoritePage from "@/pages/FavoritePage";
 import HomePage from "@/pages/HomePage";
 
 const publicRoutes = [
@@ -7,4 +8,11 @@ const publicRoutes = [
   },
 ];
 
-export { publicRoutes };
+const privateRoutes = [
+  {
+    path: "/favorites",
+    element: <FavoritePage />,
+  },
+];
+
+export { publicRoutes, privateRoutes };

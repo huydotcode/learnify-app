@@ -14,6 +14,20 @@ type ProductType = {
   updatedAt?: string;
 };
 
+type ReviewType = {
+  id: string;
+  productId: string;
+  user: {
+    id: string;
+    name: string;
+    avatar?: string;
+  };
+  rating: number;
+  comment: string;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
 type UserType = {
   id: string;
   name: string;
@@ -35,4 +49,17 @@ type CartItemType = {
   userId: string;
 };
 
-export type { ProductType, UserType, CartItemType };
+type FavoriteItemType = {
+  productId: string;
+  userId: string;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
+export type {
+  ProductType,
+  UserType,
+  CartItemType,
+  FavoriteItemType,
+  ReviewType,
+};

@@ -5,6 +5,7 @@ import { HiOutlineLogin, HiShoppingCart } from "react-icons/hi";
 import { IoClose, IoLogOut } from "react-icons/io5";
 import { LuTrash2 } from "react-icons/lu";
 import { IoIosHeart } from "react-icons/io";
+import { IoIosHeartDislike } from "react-icons/io";
 
 const Icons = {
   Search: CiSearch,
@@ -19,6 +20,7 @@ const Icons = {
   Minus: FaMinus,
   Login: HiOutlineLogin,
   Heart: IoIosHeart,
+  HeartDislike: IoIosHeartDislike,
 };
 
 export default Icons;

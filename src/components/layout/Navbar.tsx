@@ -10,6 +10,7 @@ import Dropdown from "../ui/Dropdown";
 import { Button } from "../ui/button";
 import Searchbar from "./Searchbar";
 import Cart from "@/features/cart/components/Cart";
+import { Link } from "react-router";
 
 const Navbar = () => {
   const { isAuthenticated, logout, user } = useAuth();
@@ -31,13 +32,13 @@ const Navbar = () => {
         <div className="relative w-full flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
-            <span className="min-w-[120px] h-12 flex items-center">
+            <Link to={"/"} className="min-w-[120px] h-12 flex items-center">
               <img
                 className="w-full h-full object-contain"
                 src="images/logo.png"
                 alt="Learnify Logo"
               />
-            </span>
+            </Link>
           </div>
 
           {/* Searchbar and Icons */}
@@ -77,6 +78,13 @@ const Navbar = () => {
                       className="absolute right-0 mt-2 w-46 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
                     >
                       <ul className="py-2">
+                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                          <span className="text-sm text-gray-700 flex items-center gap-2">
+                            <Icons.Heart className="h-4 w-4" />
+                            <Link to="/favorites">Yêu thích</Link>
+                          </span>
+                        </li>
+
                         <li
                           className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                           onClick={logout}

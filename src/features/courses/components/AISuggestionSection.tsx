@@ -1,24 +1,62 @@
-import { useState } from "react";
-
 import ProductCard from "@/components/ProductCard";
+import SkeletonProductCard from "@/components/SkeletonProductCard";
+import { mockProducts } from "@/data/mockProducts";
 import { mockSuggestions } from "@/data/mockSuggestion";
+import useAuth from "@/hooks/useAuth";
+import type { RootState } from "@/store";
 import type { ProductType } from "@/types";
 import { motion } from "framer-motion";
-import SkeletonProductCard from "@/components/SkeletonProductCard";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { toast } from "sonner";
 
 const AISuggestionSection = () => {
+  const { isAuthenticated } = useAuth();
+  const { items: favorites } = useSelector(
+    (state: RootState) => state.favorite
+  );
+
   const [suggestions, setSuggestions] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleSuggest = async () => {
+    if (!isAuthenticated) {
+      toast.error(
+        "Vui lòng đăng nhập để sử dụng tính năng gợi ý khóa học từ AI."
+      );
+      setSuggestions([]);
+      setVisible(false);
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
       setVisible(false);
-      await new Promise((r) => setTimeout(r, 1000)); // giả lập delay
-      setSuggestions(mockSuggestions);
 
+      const suggestions = await new Promise((r) =>
+        setTimeout(() => {
+          // Giả lập API call để lấy gợi ý khóa học dùng favorites và mockProducts để tạo gợi ý
+          const recommended = mockProducts.filter(
+            (product) =>
+              !favorites.some((fav) => fav.productId === product.productId) &&
+              product?.keywords &&
+              product?.keywords.some((keyword) =>
+                favorites.some((fav) => {
+                  const keywords = mockProducts.find(
+                    (p) => p.productId === fav.productId
+                  )?.keywords;
+                  return keywords?.includes(keyword);
+                })
+              )
+          );
+          r(recommended.length > 0 ? recommended : mockSuggestions);
+        }, 1000)
+      );
+
+      setSuggestions(suggestions as ProductType[]);
       setVisible(true);
     } catch (err) {
       setLoading(false);
@@ -70,7 +108,7 @@ const AISuggestionSection = () => {
             {/* Gợi ý xuất hiện */}
             {visible && (
               <motion.div
-                className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="mt-10 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6"
                 initial="hidden"
                 animate="visible"
                 variants={{
