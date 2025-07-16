@@ -2,6 +2,7 @@ import type { ProductType } from "@/types";
 
 export const mockSuggestions: ProductType[] = [
   {
+    productId: "1",
     title: "Khóa học Machine Learning",
     price: 399000,
     description:
@@ -18,6 +19,7 @@ export const mockSuggestions: ProductType[] = [
     updatedAt: Date.now().toString(),
   },
   {
+    productId: "2",
     title: "Khóa học UX/UI Design",
     price: 179000,
     description:
